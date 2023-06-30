@@ -1,0 +1,79 @@
+.shop-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+    justify-items: center;
+}
+
+
+
+/* ----------------   card-container css from here    --------------------- */
+
+
+.card-container {
+    background-color: #FF99004D;
+    position: sticky;
+    width: 381px;
+    height: 100vh;
+    right: 0;
+    top: 0;
+}
+
+.card-header {
+    font-size: 25px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.costing-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 23px;
+}
+
+.grand-total {
+    font-size: 21px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.032px;
+    margin-left: 23px;
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.clear-cart {
+    width: 232px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #FF3030;
+    margin-top: 17px;
+    border: none;
+}
+
+.review {
+    width: 232px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #F90;
+    margin-top: 17px;
+    border: none;
+}
