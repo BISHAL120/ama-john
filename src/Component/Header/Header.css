@@ -4,16 +4,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 140px;
+    /* padding-left: 140px; */
     padding-right: 140px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  
 }
 
+.header img{
+    margin-left: 140px;
+}
 .header a {
     text-decoration: none;
     margin-right: 32px;
     color: #ffffff;
 }
 
+
+.ancor {
+    margin-right: 90px;
+}
 .header a:hover{
     color: orange;
 }

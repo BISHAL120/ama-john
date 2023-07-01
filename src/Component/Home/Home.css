@@ -1,0 +1,50 @@
+.container-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 160px;
+}
+
+.discount p {
+    color: #F90;
+    font-size: 17px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.026px;
+    margin-bottom: 60px;
+}
+
+.collection {
+    font-size: 60px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.9px;
+}
+
+.discover {
+    font-size: 24px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.06px;
+}
+
+.button {
+    width: 203px;
+    height: 56px;
+    border-radius: 4px;
+    background: #F90;
+    border: none;
+}
+
+
+.images img {
+    box-shadow: 0 0 20px 20px  #FFE0B3;
+    border-radius: 2px;
+}
