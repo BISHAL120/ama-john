@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import Products from '../Products/Products';
+import { addToDb } from '../../utilities/fakedb';
 
 const Shop = () => {
     const [products, setProduct] = useState([]);
@@ -22,7 +23,10 @@ const Shop = () => {
         const newcard = [...card, product];
         setCard(newcard);
 
-        const chargeprice = charge + 5;
+        addToDb(product.id);
+
+        const chargeprice = charge + product.shipping;
+        console.log(product.shipping);
         setCharge(chargeprice);
 
         const newprice = price + product.price;
