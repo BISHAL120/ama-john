@@ -70,7 +70,7 @@ const Shop = () => {
                         <p>Tax: ${tax.toFixed(2)}</p>
                     </div>
                     <div className='grand-total'>
-                        <p>Grand Total: $ {total}</p>
+                        <p>Grand Total: $ {total.toFixed(2)}</p>
                     </div>
                     <div className='btns'>
                         <div>
