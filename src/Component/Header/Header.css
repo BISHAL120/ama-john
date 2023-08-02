@@ -6,9 +6,9 @@
     justify-content: space-between;
     /* padding-left: 140px; */
     /* padding-right: 140px; */
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
     width: 100%;
   
 }
@@ -16,7 +16,7 @@
 .header img{
     margin-left: 140px;
 }
-.header a {
+.link {
     text-decoration: none;
     margin-right: 32px;
     color: #ffffff;

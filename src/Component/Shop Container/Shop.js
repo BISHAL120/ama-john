@@ -1,53 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import Products from '../Products/Products';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getShoppingCart } from '../../utilities/fakedb';
+import Card from '../Card/Card';
+import { Link, Outlet } from 'react-router-dom';
+import useProduct from '../../Hooks/useProduct';
 
 const Shop = () => {
-    const [products, setProduct] = useState([]);
+    const [products, setProduct] = useProduct();
     const [card, setCard] = useState([]);
-    const [charge, setCharge] = useState(0);
-    const [price, setPrice] = useState(0);
-    const [tax, setTax] = useState(0);
-    const [total, setTotal] = useState(0);
-
-    useEffect(() => {
-        fetch('products.json')
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
 
 
-    const handlecard = (product) => {
+
+    useEffect(()=>{
+        const shoppingcard = getShoppingCart();
+        const savedcard = [];
+        for(const id in shoppingcard){
+            // console.log(id);
+            const addedproduct = products.find(product => product.id === id);
+            if(addedproduct){
+                const quantity = shoppingcard[id];
+                addedproduct.quantity = quantity;
+                savedcard.push(addedproduct);
+                // console.log(addedproduct);
+
+            }
+        }
+        setCard(savedcard);
+
+    },[products])
+
+    const handlecard = (selectedproduct) => {
         // console.log(product);
-        const newcard = [...card, product];
+        let newcard = [];
+        const exists = card.find(product => product.id === selectedproduct.id);
+        if(!exists){
+            selectedproduct.quantity = 1;
+            newcard = [...card, selectedproduct];
+        }
+        else{
+            const rest = card.filter(product => product.id !== selectedproduct.id);
+            exists.quantity = exists.quantity + 1;
+            newcard = [...rest, exists];
+        }
+
         setCard(newcard);
-
-        addToDb(product.id);
-
-        const chargeprice = charge + product.shipping;
-        console.log(product.shipping);
-        setCharge(chargeprice);
-
-        const newprice = price + product.price;
-        setPrice(newprice);
-        // console.log(newprice);
-
-        const taxs = newprice * 0.1;
-        // console.log(taxs);
-        setTax(taxs);
-
-        setTotal(chargeprice + newprice + taxs);
+        addToDb(selectedproduct.id);
 
     }
 
-    const clearcard = () => {
-        setCard(0);
-        setCharge(0);
-        setPrice(0);
-        setTax(0);
-        setTotal(0);
-    }
+
 
 
 
@@ -60,26 +62,17 @@ const Shop = () => {
                     }
                 </div>
                 <div className='card-container'>
-                    <div className='card-header'>
-                        <h3>Order Summary</h3>
-                    </div>
-                    <div className='costing-info'>
-                        <p>Selected Items: {card.length}</p>
-                        <p>Total Shipping Charge: ${charge}</p>
-                        <p>Total Price: ${price}</p>
-                        <p>Tax: ${tax.toFixed(2)}</p>
-                    </div>
-                    <div className='grand-total'>
-                        <p>Grand Total: $ {total.toFixed(2)}</p>
-                    </div>
+                    <Card cart = {card}>
                     <div className='btns'>
                         <div>
-                            <button onClick={clearcard} className='clear-cart'>Clear Cart </button>
+                            <button className='clear-cart'>Clear Cart </button>
                         </div>
                         <div>
-                            <button className='review'>Review Order</button>
+                            <Link to="/review"><button className='review'>Review Order</button></Link>
                         </div>
                     </div>
+                    </Card>
+                    
                 </div>
             </div>
         </div>
